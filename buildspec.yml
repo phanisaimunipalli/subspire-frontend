@@ -17,10 +17,11 @@ phases:
   post_build:
     commands:
       # Remove existing node_modules to clear dev dependencies
-      - rm -r node_modules
+      - rm -rf node_modules
 
       # Install runtime dependencies
       - npm install --production
+      - npm start
 
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template-file template-export.yml
 
