@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import cover from "./subspire-signin-cover.png";
 import { useLocation } from "react-router-dom";
-import TextBG from "./videos/textbg.mp4";
 
 function Signin(props) {
   const location = useLocation();
@@ -167,7 +166,7 @@ function Signin(props) {
           {/* <img src={cover} width={"100%"} height={"100%"} /> */}
           <div className="container-text" height="100%">
             <video className="bg-video" autoPlay muted loop>
-              <source src={TextBG} type="video/mp4" />
+              <source src="https://imgur.com/2cSaKIt.mp4" type="video/mp4" />
             </video>
             <p className="text">S U B S P I R E</p>
           </div>
