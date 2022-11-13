@@ -1,15 +1,80 @@
 {
-  "name": "Node-Webiste-EB-Sample-App",
-  "description": "Sample NodeJs web application",
-  "version": "0.0.1",
+  "name": "subspire",
+  "author": "Team Maverick",
+  "web": "subspire.us",
+  "email": "",
+  "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "mocha": "5.0.0",
-    "unit.js": "2.0.0",
-    "supertest": "3.0.0"
+  "homepage": ".",
+  "main": "index.js",
+  "proxy": "",
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.10",
+    "@nkalpak/react-ios-pwa-prompt": "^1.8.7",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/user-event": "^13.5.0",
+    "aws-sdk": "^2.1249.0",
+    "axios": "^0.26.0",
+    "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.8.1",
+    "express": "^4.18.2",
+    "install": "^0.13.0",
+    "moment": "^2.29.4",
+    "npm": "^8.19.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.39.1",
+    "react-ios-pwa-prompt": "^1.8.4",
+    "react-router-dom": "^6.2.2",
+    "react-scripts": "5.0.0",
+    "react-spinners": "^0.13.6",
+    "recharts": "^2.1.16",
+    "web-vitals": "^2.1.4",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "start": "node app.js",
-    "test": "mocha --recursive tests --exit"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.2.1"
   }
 }
