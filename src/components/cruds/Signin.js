@@ -27,6 +27,13 @@ function Signin(props) {
 
   const accesToken = "sample_token";
 
+  const localurl = "http://localhost:8080";
+  const produrl =
+    "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com";
+
+  console.log("localurl: ", localurl);
+  console.log("produrl: ", produrl);
+
   const [crud, setCrud] = useState(initialState);
   const [token, setToken] = useState(accesToken);
   const [isRegister, setisRegister] = useState(false);
@@ -48,10 +55,9 @@ function Signin(props) {
     if (!crud.email || !crud.password) return;
     async function postCrud() {
       try {
-        const response = await post(
-          "http://localhost:8080/api/auth/login",
-          crud
-        );
+        //change produrl to localurl for local setup
+        // and change back localurl to produrl when commiting to git
+        const response = await post(produrl + "/api/auth/login", crud);
         console.log("login.response: ", response);
         console.log("login.response.status: ", response.status);
         console.log("login.response.data: ", response.data);

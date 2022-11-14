@@ -25,8 +25,11 @@ function CrudEdit(props) {
     notifyFlag: false,
   };
   const [crud, setCrud] = useState(loginState.data);
-  const [userData, setUserData] = useState(loginState.data);
+  const [userData, setUserData] = useState(loginState.userData);
   const [response, setResponse] = useState();
+  const localurl = "http://localhost:8080";
+  const produrl =
+    "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com";
 
   const { _id } = useParams();
   console.log("edit.id: ", _id);
@@ -40,17 +43,18 @@ function CrudEdit(props) {
         var config = {
           method: "post",
           url:
-            "http://localhost:8080/api/users/" +
-            `${userData.userUUID}` +
+            produrl +
+            "/api/users/" +
+            `${crud.userUUID}` +
             "/subscriptions/" +
-            `${userData.uuid}`,
+            `${crud.uuid}`,
           headers: {
             Authorization: "Bearer " + `${userData.accesToken}`,
             "Content-Type": "application/json",
           },
           data: crud,
         };
-
+        console.log("edit.config: ", config);
         axios(config).then(function (response) {
           setResponse(response.data);
           console.log(JSON.stringify(response.data));
@@ -76,10 +80,10 @@ function CrudEdit(props) {
   }
 
   function handleCancel() {
+    console.log("edit.cancel.userData: ", userData);
     navigate("/dashboard", {
       state: {
         data: userData,
-        isLogin: true,
       },
     });
   }

@@ -33,9 +33,9 @@ function PlanGridView(props) {
   // setLoginFlag(initState.signinFlag);
   const [userData, setUserData] = useState(dashState ? dashState.data : "");
 
-  console.log("loginFlag: ", initState.signinFlag);
-  console.log("user.data.uuid: ", dashState.data.uuid);
-  console.log("user.data.accesToken: ", dashState.data.accesToken);
+  // console.log("loginFlag: ", initState.signinFlag);
+  // console.log("user.data.uuid: ", dashState.data.uuid);
+  // console.log("user.data.accesToken: ", dashState.data.accesToken);
 
   return (
     <div>
