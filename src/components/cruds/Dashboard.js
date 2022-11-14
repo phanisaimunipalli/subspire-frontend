@@ -28,6 +28,9 @@ export default class Dashboard extends React.Component {
       showEditComponent: false,
       userAndResponse: { user: "", response: [] },
       loading: true,
+      localurl: "http://localhost:8080",
+      produrl:
+        "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com",
     };
     console.log("this.props.location: ", this.props.location);
     console.log("userData in dashboard: ", this.state.userData);
@@ -35,7 +38,8 @@ export default class Dashboard extends React.Component {
 
   componentDidMount() {
     const url =
-      "http://localhost:8080/api/users/" +
+      this.state.produrl +
+      "/api/users/" +
       `${this.state.userData.uuid}` +
       "/subscriptions";
     const headers = {
@@ -187,41 +191,14 @@ export default class Dashboard extends React.Component {
                       </div>
 
                       <div className="card-footer d-flex align-items-center">
-                        {/* <Link to={`/cruds/${crud._id}`} className="btn-more">
-                          More
-                        </Link> */}
-
-                        {/* <Link
-                          // to={`/cruds/${crud.uuid}/edit`}
-                          className="btn-edit"
-                          to={{
-                            pathname: `/cruds/${crud.uuid}/edit`,
-                            state: this.state,
-                          }}
-                        >
-                          Edit
-                        </Link> */}
                         <Link
                           to={`/cruds/${crud.uuid}/edit`}
-                          state={{ data: crud }}
+                          state={{ data: crud, userData: this.state.userData }}
                           className="btn-edit"
                         >
                           Edit
                         </Link>
-                        {/* <button
-                          type="button"
-                          className="btn-edit"
-                          onClick={this.goToEditPlan}
-                        >
-                          Edit
-                        </button> */}
                       </div>
-                      {/* {this.state.showEditComponent ? (
-                        <div>
-                          {(this.state.showEditComponent = false)}
-                          <CrudEdit data={this.state.userAndResponse} />
-                        </div>
-                      ) : null} */}
                     </div>
                   );
                 })}

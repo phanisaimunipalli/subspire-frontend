@@ -34,6 +34,10 @@ function CrudAdd(props) {
   const [response, setResponse] = useState();
   const [receipt, setReceipt] = useState();
 
+  const localurl = "http://localhost:8080";
+  const produrl =
+    "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com";
+
   // console.log("add.uuid: ", uuid);
   const navigate = useNavigate();
 
@@ -49,10 +53,7 @@ function CrudAdd(props) {
 
         var config = {
           method: "post",
-          url:
-            "http://localhost:8080/api/users/" +
-            `${userData.uuid}` +
-            "/subscriptions",
+          url: produrl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
           headers: {
             Authorization: "Bearer " + `${userData.accesToken}`,
             "Content-Type": "application/json",
