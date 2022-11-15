@@ -17,15 +17,16 @@ function Signup(props) {
 
   const navigate = useNavigate();
 
+  const localurl = "http://localhost:8080";
+  const produrl =
+    "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com";
+
   function handleSubmit(event) {
     event.preventDefault();
     if (!crud.name || !crud.email || !crud.password) return;
     async function postCrud() {
       try {
-        const response = await post(
-          "http://localhost:8080/api/auth/signup",
-          crud
-        );
+        const response = await post(produrl + "/api/auth/signup", crud);
         console.log("signup.response: ", response);
         console.log(
           "response.data.result.success: ",
