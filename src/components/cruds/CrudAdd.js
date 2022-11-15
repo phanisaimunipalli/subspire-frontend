@@ -24,15 +24,13 @@ function CrudAdd(props) {
     startDate: "",
     endDate: "",
     notifyFlag: false,
-    receipt: [],
   };
   const [crud, setCrud] = useState(initialState);
-  const [selectedFile, setSelectedFile] = useState();
-  const [notifyFlag, setNotifyFlag] = useState(false);
-  const [addData, setAddData] = useState();
+  const [body, setBody] = useState(initialState);
   const [userData, setUserData] = useState(loginState.data);
   const [response, setResponse] = useState();
-  const [receipt, setReceipt] = useState();
+  const [receipt, setReceipt] = useState(new FormData());
+  const [image, setImage] = useState({ preview: "", data: "" });
 
   const localurl = "http://localhost:8080";
   const produrl =
@@ -41,26 +39,59 @@ function CrudAdd(props) {
   // console.log("add.uuid: ", uuid);
   const navigate = useNavigate();
 
+  // var formData = new FormData();
+  // formData.append("receipt", image.data);
+
   function handleSubmit(event) {
-    console.log("event: ", event);
-    const data = new FormData(event.target);
-    console.log("submit.data: ", data);
+    // console.log("event: ", event);
     event.preventDefault();
-    // if (!crud.companyName || !crud.email) return;
+    let formData = new FormData();
+    formData.append("receipt", image.data);
+
+    // Display the values
+    for (const value of formData.values()) {
+      crud.receipt = value;
+      console.log(value);
+    }
+
+    // console.log("formData: ", formData);
+
+    setReceipt(image.data);
+    console.log("setReceipt: ", receipt);
+    // crud.receipt = receipt;
+
+    // var formdata = new FormData();
+    // formdata.append("receipt", image.data, "aws.png");
+    // console.log("formdata: ", formdata);
+
+    setBody({
+      receipt: image.data,
+      service: crud.service,
+      planType: crud.planType,
+      billingCycle: crud.billingCycle,
+      category: crud.category,
+      price: crud.price,
+      currency: crud.currency,
+      startDate: crud.startDate,
+      endDate: crud.endDate,
+      notifyFlag: crud.notifyFlag,
+    });
+
     async function postCrud() {
       try {
         console.log("crud: ", crud);
-
+        console.log("body: ", body);
         var config = {
           method: "post",
-          url: produrl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
+          url: localurl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
           headers: {
             Authorization: "Bearer " + `${userData.accesToken}`,
-            "Content-Type": "application/json",
+            // "Content-Type": "multipart/form-data",
+            // Accept: "application/json",
           },
           data: crud,
         };
-
+        console.log("config: ", config);
         axios(config).then(function (response) {
           setResponse(response.data);
           console.log(JSON.stringify(response.data));
@@ -87,7 +118,7 @@ function CrudAdd(props) {
 
   function handleChange(event) {
     // console.log("event.target.checked: ", event.target.checked);
-    setNotifyFlag(event.target.checked);
+    // setNotifyFlag(event.target.checked);
     setCrud({ ...crud, [event.target.name]: event.target.value });
   }
 
@@ -101,11 +132,12 @@ function CrudAdd(props) {
 
   function handleFileChange(event) {
     console.log(event.target.files[0]);
-    // setSelectedFile(event.target.files[0]);
-    // setReceipt(event.target.files[0]);
-    // console.log("receipt: ", receipt);
-    crud.receipt = event.target.files[0];
-    console.log("crud.file: ", crud);
+
+    const img = {
+      preview: URL.createObjectURL(event.target.files[0]),
+      data: event.target.files[0],
+    };
+    setImage(img);
   }
   // function handleUpload(event) {
   //   event.preventDefault();
@@ -125,7 +157,11 @@ function CrudAdd(props) {
       <div className="container-add" style={{ maxWidth: "600px" }}>
         <h1>Add Plan</h1>
         <hr />
-        <form className="form-group" onSubmit={handleSubmit}>
+        <form
+          className="form-group"
+          enctype="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item md={6}>
@@ -184,10 +220,12 @@ function CrudAdd(props) {
                     onChange={handleChange}
                     name="category"
                     value={crud.category}
-                    // defaultValue="Entertainment"
+                    defaultValue="Entertainment"
                     required
                   >
-                    <option value="Entertainment">Entertainment</option>
+                    <option value="Entertainment" selected>
+                      Entertainment
+                    </option>
                     <option value="News">News</option>
                     <option value="Technology">Technology</option>
                     <option value="eCommerce">eCommerce</option>
@@ -288,7 +326,7 @@ function CrudAdd(props) {
                     className="form-control"
                     id="receipt"
                     name="receipt"
-                    value={crud.receipt}
+                    // value={crud.receipt}
                     onChange={handleFileChange}
                     aria-describedby="inputGroupFileAddon04"
                     aria-label="Upload"
