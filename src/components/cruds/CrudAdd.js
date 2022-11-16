@@ -83,7 +83,7 @@ function CrudAdd(props) {
         console.log("body: ", body);
         var config = {
           method: "post",
-          url: localurl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
+          url: produrl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
           headers: {
             Authorization: "Bearer " + `${userData.accesToken}`,
             // "Content-Type": "multipart/form-data",
