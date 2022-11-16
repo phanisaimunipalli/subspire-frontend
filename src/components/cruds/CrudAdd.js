@@ -90,21 +90,32 @@ function CrudAdd(props) {
         };
         console.log("config: ", config);
         axios(config).then(function (response) {
+          console.log(response.data);
           setResponse(response.data);
           console.log(JSON.stringify(response.data));
+          if (response.data.status == 200) {
+            navigate(0, {
+              state: {
+                data: userData,
+                response: response,
+              },
+            });
+          } else {
+            alert("Something wrong with the data or internal systems!");
+          }
         });
-        console.log("response is: ", response);
+        // console.log("response is: ", response);
 
-        if (response.status == 200) {
-          navigate("/dashboard", {
-            state: {
-              data: userData,
-              response: response,
-            },
-          });
-        } else {
-          alert("Something wrong with the data or internal systems!");
-        }
+        // if (response.status == 200) {
+        //   navigate(0, {
+        //     state: {
+        //       data: userData,
+        //       response: response,
+        //     },
+        //   });
+        // } else {
+        //   alert("Something wrong with the data or internal systems!");
+        // }
 
         // if (response) {
         //   navigate("/dashboard", {
@@ -162,11 +173,7 @@ function CrudAdd(props) {
       <div className="container-add" style={{ maxWidth: "600px" }}>
         <h1>Add Plan</h1>
         <hr />
-        <form
-          className="form-group"
-          enctype="multipart/form-data"
-          onSubmit={handleSubmit}
-        >
+        <form className="form-group" onSubmit={handleSubmit}>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item md={6}>
@@ -192,7 +199,7 @@ function CrudAdd(props) {
                     onChange={handleChange}
                     name="planType"
                     value={crud.planType}
-                    // defaultValue="Basic"
+                    defaultValue="Basic"
                     required
                   >
                     <option value="Basic">Basic</option>

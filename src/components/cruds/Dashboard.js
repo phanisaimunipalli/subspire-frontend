@@ -54,7 +54,7 @@ export default class Dashboard extends React.Component {
         this.setState({
           cruds: data,
         });
-
+        console.log("dash.response: ", data);
         this.setState({
           userAndResponse: {
             user: this.state.userData,
