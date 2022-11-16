@@ -23,7 +23,7 @@ function Signup(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!crud.name || !crud.email || !crud.password) return;
+    // if (!crud.name || !crud.email || !crud.password) return;
     async function postCrud() {
       try {
         const response = await post(produrl + "/api/auth/signup", crud);
