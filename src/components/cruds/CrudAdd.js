@@ -23,10 +23,9 @@ function CrudAdd(props) {
     currency: "",
     startDate: "",
     endDate: "",
-    notifyFlag: false,
+    notifyFlag: true,
   };
   const [crud, setCrud] = useState(initialState);
-  const [body, setBody] = useState(initialState);
   const [userData, setUserData] = useState(loginState.data);
   const [response, setResponse] = useState();
   const [receipt, setReceipt] = useState(new FormData());
@@ -45,49 +44,47 @@ function CrudAdd(props) {
   function handleSubmit(event) {
     // console.log("event: ", event);
     event.preventDefault();
-    let formData = new FormData();
-    formData.append("receipt", image.data);
+    // let formData = new FormData();
+    // formData.append("receipt", image.data);
 
     // Display the values
-    for (const value of formData.values()) {
-      crud.receipt = value;
-      console.log(value);
-    }
+    // for (const value of formData.values()) {
+    //   crud.receipt = value;
+    //   console.log(value);
+    // }
 
     // console.log("formData: ", formData);
 
-    setReceipt(image.data);
-    console.log("setReceipt: ", receipt);
+    // setReceipt(image.data);
+    // console.log("setReceipt: ", receipt);
     // crud.receipt = receipt;
 
     // var formdata = new FormData();
     // formdata.append("receipt", image.data, "aws.png");
     // console.log("formdata: ", formdata);
 
-    setBody({
-      receipt: image.data,
-      service: crud.service,
-      planType: crud.planType,
-      billingCycle: crud.billingCycle,
-      category: crud.category,
-      price: crud.price,
-      currency: crud.currency,
-      startDate: crud.startDate,
-      endDate: crud.endDate,
-      notifyFlag: crud.notifyFlag,
-    });
+    // setBody({
+    //   receipt: image.data,
+    //   service: crud.service,
+    //   planType: crud.planType,
+    //   billingCycle: crud.billingCycle,
+    //   category: crud.category,
+    //   price: crud.price,
+    //   currency: crud.currency,
+    //   startDate: crud.startDate,
+    //   endDate: crud.endDate,
+    //   notifyFlag: crud.notifyFlag,
+    // });
 
     async function postCrud() {
       try {
         console.log("crud: ", crud);
-        console.log("body: ", body);
         var config = {
           method: "post",
-          url: localurl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
+          url: produrl + "/api/users/" + `${userData.uuid}` + "/subscriptions",
           headers: {
             Authorization: "Bearer " + `${userData.accesToken}`,
-            // "Content-Type": "multipart/form-data",
-            // Accept: "application/json",
+            "Content-Type": "application/json",
           },
           data: crud,
         };
@@ -97,18 +94,26 @@ function CrudAdd(props) {
           console.log(JSON.stringify(response.data));
         });
         console.log("response is: ", response);
-        //have to add status in response - Piyush
-        // if (response.status == 200) {
-        //   navigate("/dashboard");
-        // }
-        if (response) {
+
+        if (response.status == 200) {
           navigate("/dashboard", {
             state: {
               data: userData,
               response: response,
             },
           });
+        } else {
+          alert("Something wrong with the data or internal systems!");
         }
+
+        // if (response) {
+        //   navigate("/dashboard", {
+        //     state: {
+        //       data: userData,
+        //       response: response,
+        //     },
+        //   });
+        // }
       } catch (error) {
         console.log("error", error);
       }
@@ -319,7 +324,7 @@ function CrudAdd(props) {
                   />
                 </div>
               </Grid>
-              <Grid item md={12} className="textAlign">
+              {/* <Grid item md={12} className="textAlign">
                 <div class="input-group">
                   <input
                     type="file"
@@ -331,24 +336,8 @@ function CrudAdd(props) {
                     aria-describedby="inputGroupFileAddon04"
                     aria-label="Upload"
                   />
-                  {/* <button
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    id="inputGroupFileAddon04"
-                    // onClick={handleUpload}
-                  >
-                    Upload
-                  </button> */}
                 </div>
-                {/* <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="notifyFlag"
-                    name="notifyFlag"
-                    value={crud.notifyFlag}
-                    onChange={handleChange}
-                  /> */}
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
 

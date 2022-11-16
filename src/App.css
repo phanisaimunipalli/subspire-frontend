@@ -152,6 +152,14 @@ video {
   border-radius: 25px;
 }
 
+.paddingBottom {
+  padding-bottom: 20ch;
+}
+
+.paddingBottomUp {
+  padding-bottom: 10ch;
+}
+
 .desc {
   text-align: left;
   align-self: flex-start;
