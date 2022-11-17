@@ -13,6 +13,7 @@ import LoginForm from "./components/cruds/LoginForm";
 import Dashboard from "./components/cruds/Dashboard";
 import Search from "./components/cruds/Search";
 import Analysis from "./components/cruds/Analysis";
+import Team from "./components/cruds/Team";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route exact path="/api/" element={<Home />} />
           <Route exact path="/dashboard" element={<CrudGridView />} />
           {/* <Route exact path="/auth-dashboard" element={<Dashboard />} /> */}
-
+          <Route exact path="/team" element={<Team />} />
           <Route exact path="/" element={<Signin />} />
           {/* <Route exact path="/" element={<LoginForm />} /> */}
           <Route exact path="/register" element={<Signup />} />
