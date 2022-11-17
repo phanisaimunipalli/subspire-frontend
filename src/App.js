@@ -5,7 +5,7 @@ import Navbar from "./components/common/Navbar";
 import Home from "./components/pages/Home";
 import CrudAdd from "./components/cruds/CrudAdd";
 import CrudTable from "./components/cruds/CrudTable";
-import CrudListView from "./components/cruds/CrudListView";
+import CrudListView from "./components/cruds/Team";
 import CrudGridView from "./components/cruds/CrudGridView";
 import CrudDetails from "./components/cruds/CrudDetails";
 import CrudEdit from "./components/cruds/CrudEdit";
@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/about" element={<Home />} />
           <Route exact path="/api/" element={<Home />} />
           <Route exact path="/cruds" element={<CrudTable />} />
-          <Route exact path="/list-view" element={<CrudListView />} />
+          <Route exact path="/team" element={<CrudListView />} />
           <Route exact path="/dashboard" element={<CrudGridView />} />
           {/* <Route exact path="/auth-dashboard" element={<Dashboard />} /> */}
 

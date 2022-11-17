@@ -22,7 +22,7 @@ function CrudEdit(props) {
     currency: "",
     startDate: "",
     endDate: "",
-    notifyFlag: false,
+    notifyFlag: true,
   };
   const [crud, setCrud] = useState(loginState.data);
   const [userData, setUserData] = useState(loginState.userData);
@@ -41,7 +41,7 @@ function CrudEdit(props) {
       try {
         console.log("crud: ", crud);
         var config = {
-          method: "post",
+          method: "put",
           url:
             produrl +
             "/api/users/" +
@@ -56,20 +56,21 @@ function CrudEdit(props) {
         };
         console.log("edit.config: ", config);
         axios(config).then(function (response) {
+          console.log("edit.response: ", response.data);
           setResponse(response.data);
           console.log(JSON.stringify(response.data));
+          if (response.data.status == 200) {
+            navigate(0, {
+              state: {
+                data: userData,
+                response: response,
+              },
+            });
+          }
         });
-
-        if (response) {
-          navigate("/dashboard", {
-            state: {
-              data: userData,
-              response: response,
-            },
-          });
-        }
       } catch (error) {
         console.log(error);
+        alert("Sorry, Cannot Update!");
       }
     }
     updateCrud();
@@ -113,7 +114,7 @@ function CrudEdit(props) {
               </Grid>
               <Grid item md={6}>
                 <div className="form-group">
-                  <label>Plan Type</label>
+                  <label>Type</label>
                   <select
                     className="form-select"
                     aria-label="Default select example"
@@ -123,6 +124,7 @@ function CrudEdit(props) {
                     // defaultValue="Basic"
                     required
                   >
+                    <option selected>Choose Plan</option>
                     <option value="Basic">Basic</option>
                     <option value="Standard">Standard</option>
                     <option value="Premium">Premium</option>
@@ -156,6 +158,7 @@ function CrudEdit(props) {
                     // defaultValue="Entertainment"
                     required
                   >
+                    <option selected>Choose Category</option>
                     <option value="Entertainment">Entertainment</option>
                     <option value="News">News</option>
                     <option value="Technology">Technology</option>

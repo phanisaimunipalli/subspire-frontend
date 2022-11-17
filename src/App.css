@@ -397,7 +397,13 @@ label {
   display: inline-block;
 }
 
+.topnav-right {
+  float: right;
+  text-align: right;
+}
+
 .footer {
+  padding-top: 40ch;
   padding: 2rem;
   text-align: center;
   background-color: #252f3e;
@@ -408,6 +414,15 @@ label {
   bottom: 0;
   width: 100%;
   height: 2.5rem;
+}
+
+.uidStyle {
+  color: gray;
+  text-align: center;
+}
+
+.colorGray {
+  color: gray;
 }
 
 .textAlign {

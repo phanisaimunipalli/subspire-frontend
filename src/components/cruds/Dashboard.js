@@ -32,11 +32,13 @@ export default class Dashboard extends React.Component {
       produrl:
         "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com",
     };
-    console.log("this.props.location: ", this.props.location);
+    // console.log("this.props.location: ", this.props.location);
+
     console.log("userData in dashboard: ", this.state.userData);
   }
 
   componentDidMount() {
+    sessionStorage.setItem("accesToken", this.state.userData.accesToken);
     const url =
       this.state.produrl +
       "/api/users/" +
@@ -67,7 +69,8 @@ export default class Dashboard extends React.Component {
     } catch (error) {
       console.log("error", error);
     }
-
+    this.setState({ loginFlag: true });
+    // window.location.reload();
     console.log("this.state.plansData: ", this.state.cruds);
   }
 
@@ -100,7 +103,15 @@ export default class Dashboard extends React.Component {
         {/* <BounceLoader color="#36d7b7" loading={this.state.loading} /> */}
 
         <div className="container">
-          <h2>Subscriptions Deck</h2>
+          <Grid>
+            <Grid item xs={6}>
+              <h2>Subscriptions Deck</h2>
+            </Grid>
+            <Grid item xs={6}>
+              <p className="uidStyle">active : {this.state.userData.uuid}</p>
+            </Grid>
+          </Grid>
+
           <hr />
           <div>
             <p className="textAlign">

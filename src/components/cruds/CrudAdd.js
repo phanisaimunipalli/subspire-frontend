@@ -104,27 +104,6 @@ function CrudAdd(props) {
             alert("Something wrong with the data or internal systems!");
           }
         });
-        // console.log("response is: ", response);
-
-        // if (response.status == 200) {
-        //   navigate(0, {
-        //     state: {
-        //       data: userData,
-        //       response: response,
-        //     },
-        //   });
-        // } else {
-        //   alert("Something wrong with the data or internal systems!");
-        // }
-
-        // if (response) {
-        //   navigate("/dashboard", {
-        //     state: {
-        //       data: userData,
-        //       response: response,
-        //     },
-        //   });
-        // }
       } catch (error) {
         console.log("error", error);
       }
@@ -192,16 +171,17 @@ function CrudAdd(props) {
               </Grid>
               <Grid item md={6}>
                 <div className="form-group">
-                  <label>Plan Type</label>
+                  <label>Type</label>
                   <select
                     className="form-select"
                     aria-label="Default select example"
                     onChange={handleChange}
                     name="planType"
                     value={crud.planType}
-                    defaultValue="Basic"
+                    // defaultValue="Basic"
                     required
                   >
+                    <option selected>Choose Plan</option>
                     <option value="Basic">Basic</option>
                     <option value="Standard">Standard</option>
                     <option value="Premium">Premium</option>
@@ -235,9 +215,8 @@ function CrudAdd(props) {
                     defaultValue="Entertainment"
                     required
                   >
-                    <option value="Entertainment" selected>
-                      Entertainment
-                    </option>
+                    <option selected>Choose Category</option>
+                    <option value="Entertainment">Entertainment</option>
                     <option value="News">News</option>
                     <option value="Technology">Technology</option>
                     <option value="eCommerce">eCommerce</option>
@@ -318,9 +297,6 @@ function CrudAdd(props) {
               </Grid>
               <Grid item md={6} className="textAlign">
                 <div className="form-check form-switch">
-                  <label className="form-check-label" htmlFor="notifyFlag">
-                    Notify Before Expiry Date?
-                  </label>
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -329,6 +305,9 @@ function CrudAdd(props) {
                     value={crud.notifyFlag}
                     onChange={handleChange}
                   />
+                  <label className="form-check-label" htmlFor="notifyFlag">
+                    Notify Before Expiry Date?
+                  </label>
                 </div>
               </Grid>
               {/* <Grid item md={12} className="textAlign">
