@@ -9,9 +9,9 @@ import { useLocation } from "react-router-dom";
 function Signin(props) {
   const location = useLocation();
   const loginState = location.state;
-  if (loginState) {
-    console.log("signin.loginState: ", loginState);
-  }
+  // if (loginState) {
+  //   console.log("signin.loginState: ", loginState);
+  // }
 
   const [state, setState] = useState(location.state);
   const initialState = {
@@ -31,24 +31,31 @@ function Signin(props) {
   const produrl =
     "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com";
 
-  console.log("localurl: ", localurl);
-  console.log("produrl: ", produrl);
+  // console.log("localurl: ", localurl);
+  // console.log("produrl: ", produrl);
 
   const [crud, setCrud] = useState(initialState);
   const [token, setToken] = useState(accesToken);
   const [isRegister, setisRegister] = useState(false);
+  const [userData, setUserData] = useState();
   const [details, setDetails] = useState(loginDetails);
   // const [isLogout, setisLogout] = useState(loginState.logout ? true : false);
 
   const navigate = useNavigate();
 
-  // React.useEffect(() => {
-  //   // Runs after the first render() lifecycle
-  //   if (isLogout) {
-  //     sessionStorage.clear();
-  //     window.location.href = "/";
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    // Runs after the first render() lifecycle
+    // if (isLogout) {
+    //   sessionStorage.clear();
+    //   window.location.href = "/";
+    // }
+    console.log("before: ", sessionStorage);
+    sessionStorage.setItem("accesToken", "");
+    sessionStorage.clear();
+    console.log("after: ", sessionStorage);
+    setUserData({});
+    // this.setState({ redirect: true });
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();

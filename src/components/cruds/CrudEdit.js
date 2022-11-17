@@ -59,20 +59,23 @@ function CrudEdit(props) {
           console.log("edit.response: ", response.data);
           setResponse(response.data);
           console.log(JSON.stringify(response.data));
-          if (response.data.status == 200) {
-            navigate(0, {
+          if (response.status == 200) {
+            navigate("/dashboard", {
               state: {
                 data: userData,
-                response: response,
               },
             });
+          } else {
+            alert("Something wrong with the data or internal systems!");
           }
         });
+        console.log("response: ", response);
       } catch (error) {
         console.log(error);
-        alert("Sorry, Cannot Update!");
+        // alert("Sorry, Cannot Update!");
       }
     }
+
     updateCrud();
   }
 

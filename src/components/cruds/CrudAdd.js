@@ -35,46 +35,10 @@ function CrudAdd(props) {
   const produrl =
     "http://subspire-bckndapp.eba-wdk9psbn.us-east-1.elasticbeanstalk.com";
 
-  // console.log("add.uuid: ", uuid);
   const navigate = useNavigate();
 
-  // var formData = new FormData();
-  // formData.append("receipt", image.data);
-
   function handleSubmit(event) {
-    // console.log("event: ", event);
     event.preventDefault();
-    // let formData = new FormData();
-    // formData.append("receipt", image.data);
-
-    // Display the values
-    // for (const value of formData.values()) {
-    //   crud.receipt = value;
-    //   console.log(value);
-    // }
-
-    // console.log("formData: ", formData);
-
-    // setReceipt(image.data);
-    // console.log("setReceipt: ", receipt);
-    // crud.receipt = receipt;
-
-    // var formdata = new FormData();
-    // formdata.append("receipt", image.data, "aws.png");
-    // console.log("formdata: ", formdata);
-
-    // setBody({
-    //   receipt: image.data,
-    //   service: crud.service,
-    //   planType: crud.planType,
-    //   billingCycle: crud.billingCycle,
-    //   category: crud.category,
-    //   price: crud.price,
-    //   currency: crud.currency,
-    //   startDate: crud.startDate,
-    //   endDate: crud.endDate,
-    //   notifyFlag: crud.notifyFlag,
-    // });
 
     async function postCrud() {
       try {
