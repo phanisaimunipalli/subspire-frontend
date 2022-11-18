@@ -105,8 +105,9 @@ Subspire is powered by AWS in every possible way to utilize its cloud services.
 ![Dashboard](https://raw.githubusercontent.com/phanisaimunipalli/CMPE272TeamMaverick/main/subspire/dashboard.png)
 
 
-## Authors
+## Team
 
+![Subspire Logo](https://raw.githubusercontent.com/phanisaimunipalli/CMPE272TeamMaverick/main/subspire/maverickteam.png)
 - [Phani Sai Ram Munipalli](https://www.github.com/phanisaimunipalli)
 - [Priya Gupta]()
 - [Harsh Patel]()
